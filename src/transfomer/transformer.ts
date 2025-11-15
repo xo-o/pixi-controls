@@ -150,7 +150,7 @@ export class Transformer extends Container {
 
 	#scale(handle: HandleKind, global: Point) {
 		const pivotLocal = this.#scalePivotLocal
-		const proposed = this.#proposeScaledRect(handle, this.toLocal(global), pivotLocal, this.#opBounds)
+		const proposed = this.#proposeScaledRect(handle, this.toLocal(global), pivotLocal)
 
 		const sx = proposed.width / this.#opBounds.width
 		const sy = proposed.height / this.#opBounds.height
@@ -268,7 +268,7 @@ export class Transformer extends Container {
 		else this.#scalePivotLocal.set(s.x, s.y)
 	}
 
-	#proposeScaledRect(handle: HandleKind, p: Point, pivot: Point, start: Rectangle) {
+	#proposeScaledRect(handle: HandleKind, p: Point, pivot: Point) {
 		if (this.opts.centeredScaling) {
 			const w = Math.max(this.#minClipW, Math.abs(p.x - pivot.x) * 2)
 			const h = Math.max(this.#minClipH, Math.abs(p.y - pivot.y) * 2)
